@@ -1,0 +1,65 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+// Define a typography level
+$custom-typography-level: mat.define-typography-level(
+  $font-family: '"Lucida Console", "Courier New", monospace',
+  $font-size: 1rem,
+  $font-weight: 400,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+// Define a typography
+$custom-typography: mat.define-typography-config(
+  $font-family: 'Arial, "Helvetica Neue", sans-serif',
+  $display-4:
+    mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3:
+    mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2: $custom-typography-level,
+  $display-1: mat.define-typography-level(34, 40, 400),
+  $headline: mat.define-typography-level(32px, 40px, 400),
+  $title: mat.define-typography-level(24px, 32px, 400),
+  $subheading-2: mat.define-typography-level(18px, 24px, 400),
+  $subheading-1: mat.define-typography-level(16px, 20px, 400),
+  $body-1:
+    mat.define-typography-level(14px, 18px, 300, $letter-spacing: -0.05em),
+);
+
+// Define a light theme
+$light-primary: mat.define-palette(mat.$indigo-palette);
+$light-accent: mat.define-palette(mat.$pink-palette);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $light-primary,
+      accent: $light-accent,
+    ),
+  )
+);
+
+// Define a dark theme
+$dark-primary: mat.define-palette(mat.$pink-palette);
+$dark-accent: mat.define-palette(mat.$green-palette);
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+    ),
+  )
+);
+
+// Apply Typography
+@include mat.core($custom-typography);
+
+.theme-dark {
+  @include mat.all-component-themes($dark-theme);
+}
+
+.theme-light {
+  @include mat.all-component-themes($light-theme);
+}

@@ -1,0 +1,8 @@
+<p>
+  <mat-label>Today's item: {{ item }}</mat-label>
+</p>
+<p><mat-label>Add New Item</mat-label></p>
+<p><input matInput type="text" id="item-input" #newItem /></p>
+<button mat-raised-button color="primary" (click)="addNewItem(newItem.value)">
+  Add to parent's list
+</button>

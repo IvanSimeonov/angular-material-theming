@@ -1,0 +1,52 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item href="#">
+        <mat-slide-toggle
+          [checked]="isDarkMode"
+          (change)="onDarkModeSwitched($event)"
+        >
+        </mat-slide-toggle>
+        <mat-icon *ngIf="isDarkMode">bedtime</mat-icon>
+        <mat-icon *ngIf="!isDarkMode">brightness_5</mat-icon></mat-list-item
+      >
+      <a mat-list-item href="#">Statistics</a>
+      <a mat-list-item href="#">Contacts</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon id="hamburger-icon" aria-label="Side nav toggle icon"
+          >menu</mat-icon
+        >
+      </button>
+      <span>Angular Material Theming</span>
+      <span class="spacer"></span>
+      <mat-slide-toggle
+        [checked]="isDarkMode"
+        (change)="onDarkModeSwitched($event)"
+      >
+      </mat-slide-toggle>
+      <mat-icon *ngIf="isDarkMode">bedtime</mat-icon>
+      <mat-icon *ngIf="!isDarkMode">brightness_5</mat-icon>
+      <a href="#">Statistics</a>
+      <a href="#">Contacts</a>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
